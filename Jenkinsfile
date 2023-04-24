@@ -8,6 +8,11 @@ pipeline {
     ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
   }
   stages {
+    stage('Build') {
+      steps {
+        sh './mvnw clean install'
+      }
+    }
     stage('Upload to Artifactory') {
       agent {
         docker {
